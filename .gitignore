@@ -1,0 +1,16 @@
+.gradle/
+.kotlin/
+**/build/
+local.properties
+*.iml
+.idea/
+.DS_Store
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/build/
+.impeccable/cache/
+dist/
+keystore.properties
+*.jks
+*.keystore
+*.p12

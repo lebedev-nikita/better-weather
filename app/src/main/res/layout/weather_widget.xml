@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:paddingStart="20dp"
+    android:paddingEnd="12dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="12dp"
+    android:background="@drawable/widget_background">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
+        <TextView android:id="@+id/widget_city" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/app_name" android:textSize="16sp" android:textStyle="bold" android:textColor="@color/widget_ink" android:maxLines="1" android:ellipsize="end" />
+        <ImageButton android:id="@+id/widget_refresh" android:layout_width="48dp" android:layout_height="48dp" android:padding="12dp" android:src="@drawable/ic_refresh" android:background="@android:color/transparent" android:contentDescription="@string/widget_refresh" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
+        <TextView android:id="@+id/widget_temperature" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/reading_unavailable" android:textSize="40sp" android:fontFamily="sans-serif-light" android:textColor="@color/widget_ink" android:includeFontPadding="false" />
+        <TextView android:id="@+id/widget_condition" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="14dp" android:text="@string/widget_choose_city" android:textSize="14sp" android:textColor="@color/widget_secondary" android:maxLines="2" android:ellipsize="end" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:baselineAligned="false">
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="2" android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/widget_wind_label" android:textColor="@color/widget_secondary" android:textSize="12sp" />
+            <TextView android:id="@+id/widget_wind" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/reading_unavailable" android:textColor="@color/widget_ink" android:textSize="14sp" android:maxLines="2" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/widget_uv_label" android:textColor="@color/widget_secondary" android:textSize="12sp" />
+            <TextView android:id="@+id/widget_uv" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/reading_unavailable" android:textColor="@color/widget_ink" android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView android:id="@+id/widget_updated" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/widget_tap_to_open" android:textColor="@color/widget_secondary" android:textSize="11sp" android:maxLines="2" android:ellipsize="end" />
+</LinearLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Better Weather</string>
+    <string name="widget_name">Погода · Better Weather</string>
+    <string name="widget_description">Температура, ветер и UV-индекс для выбранного города</string>
+    <string name="widget_choose_city">Откройте приложение</string>
+    <string name="widget_tap_to_open">Нажмите, чтобы посмотреть прогноз</string>
+    <string name="widget_updating">Обновляем погоду…</string>
+    <string name="widget_refresh_failed">Нет обновления · нажмите ↻</string>
+    <string name="widget_wind_label">Ветер</string>
+    <string name="widget_uv_label">UV-индекс</string>
+    <string name="widget_refresh">Обновить погоду</string>
+    <string name="reading_unavailable">—</string>
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.BetterWeather" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">@color/widget_background</item>
+        <item name="android:colorAccent">@color/widget_accent</item>
+    </style>
+</resources>

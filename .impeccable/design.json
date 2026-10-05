@@ -1,0 +1,501 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-05T19:41:12.241081+00:00",
+  "title": "Design System: Better Weather",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Cobalt",
+        "tonalRamp": [
+          "oklch(15.00% 0.1866 262.29)",
+          "oklch(26.43% 0.1866 262.29)",
+          "oklch(37.86% 0.1866 262.29)",
+          "oklch(49.29% 0.1866 262.29)",
+          "oklch(60.71% 0.1866 262.29)",
+          "oklch(72.14% 0.1866 262.29)",
+          "oklch(83.57% 0.1866 262.29)",
+          "oklch(95.00% 0.1866 262.29)"
+        ]
+      },
+      "on-primary": {
+        "role": "primary",
+        "displayName": "Button white",
+        "tonalRamp": [
+          "oklch(15.00% 0.0000 89.88)",
+          "oklch(26.43% 0.0000 89.88)",
+          "oklch(37.86% 0.0000 89.88)",
+          "oklch(49.29% 0.0000 89.88)",
+          "oklch(60.71% 0.0000 89.88)",
+          "oklch(72.14% 0.0000 89.88)",
+          "oklch(83.57% 0.0000 89.88)",
+          "oklch(95.00% 0.0000 89.88)"
+        ]
+      },
+      "primary-container": {
+        "role": "primary",
+        "displayName": "Selection blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.0356 262.82)",
+          "oklch(26.43% 0.0356 262.82)",
+          "oklch(37.86% 0.0356 262.82)",
+          "oklch(49.29% 0.0356 262.82)",
+          "oklch(60.71% 0.0356 262.82)",
+          "oklch(72.14% 0.0356 262.82)",
+          "oklch(83.57% 0.0356 262.82)",
+          "oklch(95.00% 0.0356 262.82)"
+        ]
+      },
+      "on-primary-container": {
+        "role": "primary",
+        "displayName": "Selection ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.1111 259.73)",
+          "oklch(26.43% 0.1111 259.73)",
+          "oklch(37.86% 0.1111 259.73)",
+          "oklch(49.29% 0.1111 259.73)",
+          "oklch(60.71% 0.1111 259.73)",
+          "oklch(72.14% 0.1111 259.73)",
+          "oklch(83.57% 0.1111 259.73)",
+          "oklch(95.00% 0.1111 259.73)"
+        ]
+      },
+      "secondary-container": {
+        "role": "secondary",
+        "displayName": "Detail blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.0200 257.47)",
+          "oklch(26.43% 0.0200 257.47)",
+          "oklch(37.86% 0.0200 257.47)",
+          "oklch(49.29% 0.0200 257.47)",
+          "oklch(60.71% 0.0200 257.47)",
+          "oklch(72.14% 0.0200 257.47)",
+          "oklch(83.57% 0.0200 257.47)",
+          "oklch(95.00% 0.0200 257.47)"
+        ]
+      },
+      "on-secondary-container": {
+        "role": "secondary",
+        "displayName": "Detail ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0630 253.72)",
+          "oklch(26.43% 0.0630 253.72)",
+          "oklch(37.86% 0.0630 253.72)",
+          "oklch(49.29% 0.0630 253.72)",
+          "oklch(60.71% 0.0630 253.72)",
+          "oklch(72.14% 0.0630 253.72)",
+          "oklch(83.57% 0.0630 253.72)",
+          "oklch(95.00% 0.0630 253.72)"
+        ]
+      },
+      "sun": {
+        "role": "tertiary",
+        "displayName": "Sun amber",
+        "tonalRamp": [
+          "oklch(15.00% 0.1022 74.13)",
+          "oklch(26.43% 0.1022 74.13)",
+          "oklch(37.86% 0.1022 74.13)",
+          "oklch(49.29% 0.1022 74.13)",
+          "oklch(60.71% 0.1022 74.13)",
+          "oklch(72.14% 0.1022 74.13)",
+          "oklch(83.57% 0.1022 74.13)",
+          "oklch(95.00% 0.1022 74.13)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Pale field",
+        "tonalRamp": [
+          "oklch(15.00% 0.0086 264.52)",
+          "oklch(26.43% 0.0086 264.52)",
+          "oklch(37.86% 0.0086 264.52)",
+          "oklch(49.29% 0.0086 264.52)",
+          "oklch(60.71% 0.0086 264.52)",
+          "oklch(72.14% 0.0086 264.52)",
+          "oklch(83.57% 0.0086 264.52)",
+          "oklch(95.00% 0.0086 264.52)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Blue ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0585 256.16)",
+          "oklch(26.43% 0.0585 256.16)",
+          "oklch(37.86% 0.0585 256.16)",
+          "oklch(49.29% 0.0585 256.16)",
+          "oklch(60.71% 0.0585 256.16)",
+          "oklch(72.14% 0.0585 256.16)",
+          "oklch(83.57% 0.0585 256.16)",
+          "oklch(95.00% 0.0585 256.16)"
+        ]
+      },
+      "surface-variant": {
+        "role": "neutral",
+        "displayName": "Measurement field",
+        "tonalRamp": [
+          "oklch(15.00% 0.0149 260.73)",
+          "oklch(26.43% 0.0149 260.73)",
+          "oklch(37.86% 0.0149 260.73)",
+          "oklch(49.29% 0.0149 260.73)",
+          "oklch(60.71% 0.0149 260.73)",
+          "oklch(72.14% 0.0149 260.73)",
+          "oklch(83.57% 0.0149 260.73)",
+          "oklch(95.00% 0.0149 260.73)"
+        ]
+      },
+      "secondary-ink": {
+        "role": "neutral",
+        "displayName": "Supporting ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0548 251.80)",
+          "oklch(26.43% 0.0548 251.80)",
+          "oklch(37.86% 0.0548 251.80)",
+          "oklch(49.29% 0.0548 251.80)",
+          "oklch(60.71% 0.0548 251.80)",
+          "oklch(72.14% 0.0548 251.80)",
+          "oklch(83.57% 0.0548 251.80)",
+          "oklch(95.00% 0.0548 251.80)"
+        ]
+      },
+      "divider": {
+        "role": "neutral",
+        "displayName": "Row divider",
+        "tonalRamp": [
+          "oklch(15.00% 0.0256 255.57)",
+          "oklch(26.43% 0.0256 255.57)",
+          "oklch(37.86% 0.0256 255.57)",
+          "oklch(49.29% 0.0256 255.57)",
+          "oklch(60.71% 0.0256 255.57)",
+          "oklch(72.14% 0.0256 255.57)",
+          "oklch(83.57% 0.0256 255.57)",
+          "oklch(95.00% 0.0256 255.57)"
+        ]
+      },
+      "dark-primary": {
+        "role": "primary",
+        "displayName": "Dark Cobalt",
+        "tonalRamp": [
+          "oklch(15.00% 0.0857 262.68)",
+          "oklch(26.43% 0.0857 262.68)",
+          "oklch(37.86% 0.0857 262.68)",
+          "oklch(49.29% 0.0857 262.68)",
+          "oklch(60.71% 0.0857 262.68)",
+          "oklch(72.14% 0.0857 262.68)",
+          "oklch(83.57% 0.0857 262.68)",
+          "oklch(95.00% 0.0857 262.68)"
+        ]
+      },
+      "dark-on-primary": {
+        "role": "primary",
+        "displayName": "Dark Button white",
+        "tonalRamp": [
+          "oklch(15.00% 0.1075 259.53)",
+          "oklch(26.43% 0.1075 259.53)",
+          "oklch(37.86% 0.1075 259.53)",
+          "oklch(49.29% 0.1075 259.53)",
+          "oklch(60.71% 0.1075 259.53)",
+          "oklch(72.14% 0.1075 259.53)",
+          "oklch(83.57% 0.1075 259.53)",
+          "oklch(95.00% 0.1075 259.53)"
+        ]
+      },
+      "dark-primary-container": {
+        "role": "primary",
+        "displayName": "Dark Selection blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.0822 256.29)",
+          "oklch(26.43% 0.0822 256.29)",
+          "oklch(37.86% 0.0822 256.29)",
+          "oklch(49.29% 0.0822 256.29)",
+          "oklch(60.71% 0.0822 256.29)",
+          "oklch(72.14% 0.0822 256.29)",
+          "oklch(83.57% 0.0822 256.29)",
+          "oklch(95.00% 0.0822 256.29)"
+        ]
+      },
+      "dark-on-primary-container": {
+        "role": "primary",
+        "displayName": "Dark Selection ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0288 259.59)",
+          "oklch(26.43% 0.0288 259.59)",
+          "oklch(37.86% 0.0288 259.59)",
+          "oklch(49.29% 0.0288 259.59)",
+          "oklch(60.71% 0.0288 259.59)",
+          "oklch(72.14% 0.0288 259.59)",
+          "oklch(83.57% 0.0288 259.59)",
+          "oklch(95.00% 0.0288 259.59)"
+        ]
+      },
+      "dark-secondary-container": {
+        "role": "secondary",
+        "displayName": "Dark Detail blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.0502 252.53)",
+          "oklch(26.43% 0.0502 252.53)",
+          "oklch(37.86% 0.0502 252.53)",
+          "oklch(49.29% 0.0502 252.53)",
+          "oklch(60.71% 0.0502 252.53)",
+          "oklch(72.14% 0.0502 252.53)",
+          "oklch(83.57% 0.0502 252.53)",
+          "oklch(95.00% 0.0502 252.53)"
+        ]
+      },
+      "dark-on-secondary-container": {
+        "role": "secondary",
+        "displayName": "Dark Detail ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0264 251.67)",
+          "oklch(26.43% 0.0264 251.67)",
+          "oklch(37.86% 0.0264 251.67)",
+          "oklch(49.29% 0.0264 251.67)",
+          "oklch(60.71% 0.0264 251.67)",
+          "oklch(72.14% 0.0264 251.67)",
+          "oklch(83.57% 0.0264 251.67)",
+          "oklch(95.00% 0.0264 251.67)"
+        ]
+      },
+      "dark-sun": {
+        "role": "tertiary",
+        "displayName": "Dark Sun amber",
+        "tonalRamp": [
+          "oklch(15.00% 0.1185 81.10)",
+          "oklch(26.43% 0.1185 81.10)",
+          "oklch(37.86% 0.1185 81.10)",
+          "oklch(49.29% 0.1185 81.10)",
+          "oklch(60.71% 0.1185 81.10)",
+          "oklch(72.14% 0.1185 81.10)",
+          "oklch(83.57% 0.1185 81.10)",
+          "oklch(95.00% 0.1185 81.10)"
+        ]
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Dark Pale field",
+        "tonalRamp": [
+          "oklch(15.00% 0.0358 255.93)",
+          "oklch(26.43% 0.0358 255.93)",
+          "oklch(37.86% 0.0358 255.93)",
+          "oklch(49.29% 0.0358 255.93)",
+          "oklch(60.71% 0.0358 255.93)",
+          "oklch(72.14% 0.0358 255.93)",
+          "oklch(83.57% 0.0358 255.93)",
+          "oklch(95.00% 0.0358 255.93)"
+        ]
+      },
+      "dark-ink": {
+        "role": "neutral",
+        "displayName": "Dark Blue ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0241 259.82)",
+          "oklch(26.43% 0.0241 259.82)",
+          "oklch(37.86% 0.0241 259.82)",
+          "oklch(49.29% 0.0241 259.82)",
+          "oklch(60.71% 0.0241 259.82)",
+          "oklch(72.14% 0.0241 259.82)",
+          "oklch(83.57% 0.0241 259.82)",
+          "oklch(95.00% 0.0241 259.82)"
+        ]
+      },
+      "dark-surface-variant": {
+        "role": "neutral",
+        "displayName": "Dark Measurement field",
+        "tonalRamp": [
+          "oklch(15.00% 0.0464 255.30)",
+          "oklch(26.43% 0.0464 255.30)",
+          "oklch(37.86% 0.0464 255.30)",
+          "oklch(49.29% 0.0464 255.30)",
+          "oklch(60.71% 0.0464 255.30)",
+          "oklch(72.14% 0.0464 255.30)",
+          "oklch(83.57% 0.0464 255.30)",
+          "oklch(95.00% 0.0464 255.30)"
+        ]
+      },
+      "dark-secondary-ink": {
+        "role": "neutral",
+        "displayName": "Dark Supporting ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0384 253.25)",
+          "oklch(26.43% 0.0384 253.25)",
+          "oklch(37.86% 0.0384 253.25)",
+          "oklch(49.29% 0.0384 253.25)",
+          "oklch(60.71% 0.0384 253.25)",
+          "oklch(72.14% 0.0384 253.25)",
+          "oklch(83.57% 0.0384 253.25)",
+          "oklch(95.00% 0.0384 253.25)"
+        ]
+      },
+      "dark-divider": {
+        "role": "neutral",
+        "displayName": "Dark Row divider",
+        "tonalRamp": [
+          "oklch(15.00% 0.0514 254.19)",
+          "oklch(26.43% 0.0514 254.19)",
+          "oklch(37.86% 0.0514 254.19)",
+          "oklch(49.29% 0.0514 254.19)",
+          "oklch(60.71% 0.0514 254.19)",
+          "oklch(72.14% 0.0514 254.19)",
+          "oklch(83.57% 0.0514 254.19)",
+          "oklch(95.00% 0.0514 254.19)"
+        ]
+      },
+      "widget-surface": {
+        "role": "neutral",
+        "displayName": "Widget field",
+        "tonalRamp": [
+          "oklch(15.00% 0.0195 260.17)",
+          "oklch(26.43% 0.0195 260.17)",
+          "oklch(37.86% 0.0195 260.17)",
+          "oklch(49.29% 0.0195 260.17)",
+          "oklch(60.71% 0.0195 260.17)",
+          "oklch(72.14% 0.0195 260.17)",
+          "oklch(83.57% 0.0195 260.17)",
+          "oklch(95.00% 0.0195 260.17)"
+        ]
+      },
+      "dark-widget-surface": {
+        "role": "neutral",
+        "displayName": "Dark Widget field",
+        "tonalRamp": [
+          "oklch(15.00% 0.0468 255.34)",
+          "oklch(26.43% 0.0468 255.34)",
+          "oklch(37.86% 0.0468 255.34)",
+          "oklch(49.29% 0.0468 255.34)",
+          "oklch(60.71% 0.0468 255.34)",
+          "oklch(72.14% 0.0468 255.34)",
+          "oklch(83.57% 0.0468 255.34)",
+          "oklch(95.00% 0.0468 255.34)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Current temperature",
+        "purpose": "Native displayLarge numerical readout; Android default sans serif, not an approved brand display face."
+      },
+      "title-large": {
+        "displayName": "Section and city title",
+        "purpose": "Semibold Material titleLarge; all other metrics inherit Material defaults."
+      },
+      "title-medium": {
+        "displayName": "Reading and condition title",
+        "purpose": "Semibold Material titleMedium for values and condition text."
+      }
+    },
+    "shadows": [],
+    "motion": [],
+    "breakpoints": [
+      {
+        "name": "two-column-content",
+        "value": "840dp"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Filled city action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Material Button used when no forecast exists. Light-theme HTML preview translates native dp/sp to CSS pixels; Material shapes, type and state layers are illustrative, not new Android tokens.",
+      "html": "<button class=\"ds-primary\">Выбрать город</button>",
+      "css": ".ds-primary { font-family: sans-serif; background: #235BCD; color: #FFFFFF; padding: 10px 24px; min-height: 48px; border: 0; border-radius: 24px; font-size: 14px; font-weight: 500; } .ds-primary:hover, .ds-primary:active { background-image: linear-gradient(#ffffff14,#ffffff14); } .ds-primary:focus-visible { outline: 2px solid #235BCD; outline-offset: 3px; } .ds-primary:disabled { opacity: .38; }"
+    },
+    {
+      "name": "Text action",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "Material TextButton used for inline secondary actions. Light-theme HTML preview translates native dp/sp to CSS pixels; Material shapes, type and state layers are illustrative, not new Android tokens.",
+      "html": "<button class=\"ds-text\">Моё местоположение</button>",
+      "css": ".ds-text { font-family: sans-serif; background: transparent; color: #235BCD; padding: 10px 12px; min-height: 48px; border: 0; border-radius: 24px; font-size: 14px; font-weight: 500; } .ds-text:hover, .ds-text:active { background: #235bcd14; } .ds-text:focus-visible { outline: 2px solid #235BCD; outline-offset: 2px; } .ds-text:disabled { opacity: .38; }"
+    },
+    {
+      "name": "City field",
+      "kind": "input",
+      "refersTo": "outlined-search",
+      "description": "Single-line native outlined city field with persistent label. Light-theme HTML preview translates native dp/sp to CSS pixels; Material shapes, type and state layers are illustrative, not new Android tokens.",
+      "html": "<fieldset class=\"ds-field\"><legend>Город</legend><input aria-label=\"Город\" placeholder=\"Например, Тбилиси\" /></fieldset>",
+      "css": ".ds-field { font-family: sans-serif; border: 1px solid #445D79; border-radius: 4px; padding: 0 16px 12px; color: #445D79; } .ds-field legend { font-size: 12px; padding: 0 4px; } .ds-field input { font-family: sans-serif; border: 0; background: transparent; color: #152A46; font-size: 16px; min-height: 36px; width: 100%; outline: none; } .ds-field:hover { border-color: #152A46; } .ds-field:focus-within { border: 2px solid #235BCD; color: #235BCD; }"
+    },
+    {
+      "name": "City app bar",
+      "kind": "nav",
+      "refersTo": "top-app-bar",
+      "description": "Selected location and a separate refresh action; one main destination. Light-theme HTML preview translates native dp/sp to CSS pixels; Material shapes, type and state layers are illustrative, not new Android tokens.",
+      "html": "<nav class=\"ds-bar\" aria-label=\"Погода\"><button class=\"ds-city\">Тбилиси</button><button class=\"ds-refresh\" aria-label=\"Обновить погоду\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M17.65,6.35A7.95,7.95 0,0 0,12 4c-4.42,0 -7.99,3.58 -7.99,8S7.58,20 12,20c3.73,0 6.84,-2.55 7.73,-6h-2.08A6,6 0,1 1,12 6c1.66,0 3.14,0.69 4.22,1.78L13,11h7V4z\" /></svg></button></nav>",
+      "css": ".ds-bar { font-family: sans-serif; background: #F5F8FE; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 4px; } .ds-city, .ds-refresh { font-family: sans-serif; border: 0; color: #235BCD; background: transparent; min-height: 48px; border-radius: 24px; } .ds-city { font-size: 22px; font-weight: 600; padding: 0 12px; } .ds-refresh { width: 48px; display: grid; place-items: center; } .ds-city:hover, .ds-refresh:hover, .ds-city:active, .ds-refresh:active { background: #235bcd14; } .ds-city:focus-visible, .ds-refresh:focus-visible { outline: 2px solid #235BCD; }"
+    },
+    {
+      "name": "Measurement panel",
+      "kind": "card",
+      "refersTo": "metric-panel",
+      "description": "Flat grouped wind, UV and humidity readings. Light-theme HTML preview translates native dp/sp to CSS pixels; Material shapes, type and state layers are illustrative, not new Android tokens.",
+      "html": "<div class=\"ds-metrics\"><div><span>Ветер</span><strong>3,1 м/с</strong><small>Северный</small></div><div><span>UV-индекс</span><strong>4,0</strong><small>Умеренный</small></div><div><span>Влажность</span><strong>58%</strong><small>Относительная</small></div></div>",
+      "css": ".ds-metrics { font-family: sans-serif; display: flex; flex-wrap: wrap; gap: 16px 20px; padding: 16px; border-radius: 16px; background: #EAF0FA; color: #152A46; } .ds-metrics div { flex: 1; min-width: 70px; display: flex; flex-direction: column; gap: 6px; } .ds-metrics span { font-size: 12px; color: #445D79; } .ds-metrics strong { font-size: 16px; font-weight: 600; } .ds-metrics small { font-size: 12px; color: #445D79; }"
+    },
+    {
+      "name": "Selected hourly reading",
+      "kind": "custom",
+      "refersTo": "hour-selected",
+      "description": "Time selection reveals corresponding measurements directly below the timeline. Light-theme HTML preview translates native dp/sp to CSS pixels; Material shapes, type and state layers are illustrative, not new Android tokens.",
+      "html": "<button class=\"ds-hour\" aria-pressed=\"true\" aria-label=\"14:00, 24 градуса, осадки 10 процентов, выбран\"><span>14:00</span><strong>24°</strong><small>10%</small></button>",
+      "css": ".ds-hour { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; gap: 12px; width: 76px; padding: 14px 6px; border: 0; border-radius: 12px; background: #DAE7FF; color: #152A46; } .ds-hour span { color: #445D79; font-size: 12px; font-weight: 500; } .ds-hour strong { font-size: 16px; font-weight: 600; } .ds-hour small { color: #235BCD; font-size: 11px; } .ds-hour:hover, .ds-hour:active { background-image: linear-gradient(#235bcd14,#235bcd14); } .ds-hour:focus-visible { outline: 2px solid #235BCD; outline-offset: 2px; }"
+    },
+    {
+      "name": "Inline hour detail",
+      "kind": "card",
+      "refersTo": "hour-detail",
+      "description": "Selected hour description and wind, precipitation and UV. Light-theme HTML preview translates native dp/sp to CSS pixels; Material shapes, type and state layers are illustrative, not new Android tokens.",
+      "html": "<div class=\"ds-detail\"><strong>14:00 · Ясно</strong><span>Ветер 3,1 м/с · Осадки 10% · UV 4,0</span></div>",
+      "css": ".ds-detail { font-family: sans-serif; padding: 14px; border-radius: 12px; background: #E4EDFA; display: flex; flex-direction: column; gap: 6px; color: #152A46; } .ds-detail strong { font-size: 14px; font-weight: 500; } .ds-detail span { font-size: 12px; color: #243E5D; }"
+    },
+    {
+      "name": "Widget prompt",
+      "kind": "card",
+      "refersTo": "widget-prompt",
+      "description": "Tonal invitation to add the native launcher widget. Light-theme HTML preview translates native dp/sp to CSS pixels; Material shapes, type and state layers are illustrative, not new Android tokens.",
+      "html": "<section class=\"ds-widget-prompt\"><strong>Погода на главном экране</strong><p>Температура, ветер и UV-индекс — в одном виджете.</p><button>Добавить виджет</button></section>",
+      "css": ".ds-widget-prompt { font-family: sans-serif; padding: 20px; border-radius: 16px; background: #DAE7FF; color: #173C78; } .ds-widget-prompt strong { font-size: 16px; font-weight: 600; } .ds-widget-prompt p { font-size: 14px; line-height: 20px; margin: 10px 0; } .ds-widget-prompt button { font-family: sans-serif; color: #235BCD; background: transparent; border: 0; border-radius: 24px; padding: 10px 0; min-height: 48px; font-size: 14px; font-weight: 500; } .ds-widget-prompt button:hover, .ds-widget-prompt button:active { background: #235bcd14; } .ds-widget-prompt button:focus-visible { outline: 2px solid #235BCD; outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Daily Observation Ledger",
+    "overview": "The implemented interface presents weather as aligned readings: a large current temperature, grouped measurements, a selectable hourly sequence, and chronological daily rows. Pale blue panels and blue ink give the data a quiet hierarchy; the warm accent identifies clear daytime weather.\n\nThis is a description of the shipped native implementation, not a user-approved brand identity. Material 3 supplies Android controls, interaction states, and platform typography. The descriptive name and all visual defaults were implementation decisions. The source files below remain authoritative; native measurements use dp and sp.",
+    "keyCharacteristics": [
+      "Readings and their units stay together.",
+      "Selection reveals detail inline.",
+      "Light and dark schemes use paired semantic roles.",
+      "Tonal panels group information without decorative shadows."
+    ],
+    "rules": [
+      {
+        "name": "The Role Pair Rule",
+        "body": "Resolve application colors through `MaterialTheme.colorScheme`; resolve widget colors through resource qualifiers. Keep the corresponding foreground and background roles together when adding states.",
+        "section": "colors"
+      },
+      {
+        "name": "The Reading Role Rule",
+        "body": "Use the existing Material role for a new datum or label; reserve the oversized light display for the current temperature. Keep text in sp so Android font scaling applies.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tonal Group Rule",
+        "body": "Use a tonal container for an actual measurement group or selected detail, and a divider for repeated chronological rows. Preserve Material elevation for native overlays.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** use Material semantic roles and the paired light/dark widget resources.",
+      "**Do** keep units, condition descriptions and data age beside their readings.",
+      "**Do** reveal selected-hour measurements inline and preserve the selected place/day state.",
+      "**Do** reuse the native Material controls, system insets and IME-aware search sheet.",
+      "**Do** retain downloaded readings during refresh and identify offline or old data with visible text."
+    ],
+    "donts": [
+      "**Don't** replace Material type roles with a new per-screen size scale.",
+      "**Don't** add shadows to flat reading panels or replace chronological rows with decorative cards.",
+      "**Don't** hardcode light colors into new Compose components.",
+      "**Don't** turn implementation defaults or the descriptive North Star into a claim of approved branding."
+    ]
+  }
+}
