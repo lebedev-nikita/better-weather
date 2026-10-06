@@ -1,5 +1,8 @@
 package dev.betterweather.widget
 
+import android.appwidget.AppWidgetHostView
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.res.Configuration
 import android.graphics.Rect
 import android.view.View
@@ -16,6 +19,35 @@ import kotlin.math.abs
 import kotlin.math.roundToInt
 
 class WeatherWidgetLayoutTest {
+    @Test fun panelStaysCompactWhenLauncherAllocatesExtraHeight() {
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        instrumentation.runOnMainSync {
+            val context = instrumentation.targetContext
+            val provider = AppWidgetManager.getInstance(context).installedProviders.first {
+                it.provider == ComponentName(context, WeatherWidgetProvider::class.java)
+            }
+            val host = AppWidgetHostView(context).apply {
+                setAppWidget(0, provider)
+                updateAppWidget(RemoteViews(context.packageName, R.layout.weather_widget).apply {
+                    setTextViewText(R.id.widget_city, "Тбилиси")
+                    setTextViewText(R.id.widget_temperature, "17°")
+                    setTextViewText(R.id.widget_condition, "Облачно")
+                    setTextViewText(R.id.widget_wind, widgetReading("Ветер · ЮВ", "0,7\u00A0м/с"))
+                    setTextViewText(R.id.widget_uv, widgetReading("UV-индекс", "0,1"))
+                    setTextViewText(R.id.widget_updated, "Обновлено 19:34")
+                })
+            }
+            val density = context.resources.displayMetrics.density
+            val w = (360 * density).roundToInt()
+            val h = (220 * density).roundToInt()
+            host.measure(View.MeasureSpec.makeMeasureSpec(w, View.MeasureSpec.EXACTLY),
+                View.MeasureSpec.makeMeasureSpec(h, View.MeasureSpec.EXACTLY))
+            host.layout(0, 0, w, h)
+            val panel = host.findViewById<View>(R.id.widget_root)
+            assertTrue("The panel must hug its readings even in a tall launcher cell", panel.height < 132 * density)
+        }
+    }
+
     @Test fun readingsRemainVisibleInCompactWidgetWithLargeFont() {
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         instrumentation.runOnMainSync {
@@ -35,7 +67,7 @@ class WeatherWidgetLayoutTest {
                     }
                     val widget = remote.apply(context, FrameLayout(context)) as ViewGroup
                     val w = (width * density).roundToInt()
-                    val h = (140 * density).roundToInt()
+                    val h = (132 * density).roundToInt()
                     widget.measure(View.MeasureSpec.makeMeasureSpec(w, View.MeasureSpec.EXACTLY),
                         View.MeasureSpec.makeMeasureSpec(h, View.MeasureSpec.EXACTLY))
                     widget.layout(0, 0, w, h)
@@ -58,10 +90,10 @@ class WeatherWidgetLayoutTest {
                         val bounds = Rect(0, 0, reading.width, reading.height)
                         widget.offsetDescendantRectToMyCoords(reading, bounds)
                         val name = context.resources.getResourceEntryName(id)
-                        assertTrue("$name clipped at ${width}×140dp, font $scale: $bounds",
+                        assertTrue("$name clipped at ${width}×132dp, font $scale: $bounds",
                             bounds.top >= widget.paddingTop && bounds.bottom <= h - widget.paddingBottom &&
                                 bounds.left >= widget.paddingLeft && bounds.right <= w - widget.paddingRight)
-                        assertTrue("$name text clipped at ${width}×140dp, font $scale: ${reading.layout.height} > ${reading.height}",
+                        assertTrue("$name text clipped at ${width}×132dp, font $scale: ${reading.layout.height} > ${reading.height}",
                             reading.layout.height <= reading.height - reading.compoundPaddingTop - reading.compoundPaddingBottom &&
                                 (0 until reading.layout.lineCount).all {
                                     reading.layout.getEllipsisCount(it) == 0 &&
