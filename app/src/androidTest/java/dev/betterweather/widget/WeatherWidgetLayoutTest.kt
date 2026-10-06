@@ -19,32 +19,37 @@ import kotlin.math.abs
 import kotlin.math.roundToInt
 
 class WeatherWidgetLayoutTest {
-    @Test fun panelStaysCompactWhenLauncherAllocatesExtraHeight() {
+    @Test fun panelFillsAvailableHeightInEveryLayout() {
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         instrumentation.runOnMainSync {
             val context = instrumentation.targetContext
             val provider = AppWidgetManager.getInstance(context).installedProviders.first {
                 it.provider == ComponentName(context, WeatherWidgetProvider::class.java)
             }
-            val host = AppWidgetHostView(context).apply {
-                setAppWidget(0, provider)
-                updateAppWidget(RemoteViews(context.packageName, R.layout.weather_widget).apply {
-                    setTextViewText(R.id.widget_city, "Тбилиси")
-                    setTextViewText(R.id.widget_temperature, "17°")
-                    setTextViewText(R.id.widget_condition, "Облачно")
-                    setTextViewText(R.id.widget_wind, widgetReading("Ветер · ЮВ", "0,7\u00A0м/с"))
-                    setTextViewText(R.id.widget_uv, widgetReading("UV-индекс", "0,1"))
-                    setTextViewText(R.id.widget_updated, "Обновлено 19:34")
-                })
-            }
             val density = context.resources.displayMetrics.density
-            val w = (360 * density).roundToInt()
-            val h = (220 * density).roundToInt()
-            host.measure(View.MeasureSpec.makeMeasureSpec(w, View.MeasureSpec.EXACTLY),
-                View.MeasureSpec.makeMeasureSpec(h, View.MeasureSpec.EXACTLY))
-            host.layout(0, 0, w, h)
-            val panel = host.findViewById<View>(R.id.widget_root)
-            assertTrue("The panel must hug its readings even in a tall launcher cell", panel.height < 132 * density)
+            for ((layoutId, heightDp) in listOf(
+                R.layout.weather_widget to 264,
+                R.layout.weather_widget_compact to 264,
+                R.layout.weather_widget_short to 264,
+                R.layout.weather_widget to 132,
+                R.layout.weather_widget_compact to 96,
+                R.layout.weather_widget_short to 48,
+            )) {
+                val host = AppWidgetHostView(context).apply {
+                    setAppWidget(0, provider)
+                    updateAppWidget(RemoteViews(context.packageName, layoutId))
+                }
+                val w = (360 * density).roundToInt()
+                val h = (heightDp * density).roundToInt()
+                host.measure(View.MeasureSpec.makeMeasureSpec(w, View.MeasureSpec.EXACTLY),
+                    View.MeasureSpec.makeMeasureSpec(h, View.MeasureSpec.EXACTLY))
+                host.layout(0, 0, w, h)
+                val panel = host.findViewById<View>(R.id.widget_root)
+                val bounds = Rect(0, 0, panel.width, panel.height)
+                host.offsetDescendantRectToMyCoords(panel, bounds)
+                assertEquals("Panel must fill the host content area at ${heightDp}dp",
+                    Rect(host.paddingLeft, host.paddingTop, w - host.paddingRight, h - host.paddingBottom), bounds)
+            }
         }
     }
 
