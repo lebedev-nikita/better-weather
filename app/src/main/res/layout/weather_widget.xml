@@ -7,18 +7,19 @@
     android:gravity="center_vertical"
     android:paddingStart="12dp"
     android:paddingEnd="12dp"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
     android:background="@drawable/widget_background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:orientation="vertical">
+        android:layout_marginBottom="6dp"
+        android:gravity="center_vertical">
         <TextView
             android:id="@+id/widget_city"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             android:textSize="16sp"
@@ -29,14 +30,16 @@
             android:ellipsize="end" />
         <TextView
             android:id="@+id/widget_updated"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1.2"
+            android:layout_marginStart="8dp"
+            android:gravity="end"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:text="@string/widget_tap_to_open"
             android:textColor="@color/widget_secondary"
             android:textSize="11sp"
             android:includeFontPadding="false"
-            android:maxLines="1"
+            android:maxLines="2"
             android:ellipsize="end" />
     </LinearLayout>
 
@@ -47,8 +50,8 @@
         android:baselineAligned="false">
         <ImageView
             android:id="@+id/widget_weather_icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="8dp"
             android:src="@drawable/weather_cloudy_1_day"
             android:scaleType="fitCenter"
@@ -66,7 +69,7 @@
                 android:text="@string/reading_unavailable"
                 android:textSize="40sp"
                 android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="24sp"
+                android:autoSizeMinTextSize="22sp"
                 android:autoSizeMaxTextSize="40sp"
                 android:autoSizeStepGranularity="1sp"
                 android:fontFamily="sans-serif-light"
@@ -86,41 +89,30 @@
                 android:ellipsize="end" />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="end">
-            <TextView
-                android:id="@+id/widget_wind_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/widget_wind_label"
-                android:textColor="@color/widget_secondary"
-                android:textSize="11sp"
-                android:includeFontPadding="false" />
+            android:layout_weight="1.7"
+            android:orientation="vertical">
             <TextView
                 android:id="@+id/widget_wind"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/reading_unavailable"
+                android:text="@string/widget_wind_unavailable"
                 android:textColor="@color/widget_ink"
-                android:textSize="14sp"
-                android:includeFontPadding="false" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="@string/widget_uv_label"
-                android:textColor="@color/widget_secondary"
-                android:textSize="11sp"
+                android:textSize="12sp"
+                android:gravity="end"
+                android:breakStrategy="simple"
                 android:includeFontPadding="false" />
             <TextView
                 android:id="@+id/widget_uv"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/reading_unavailable"
+                android:layout_marginTop="4dp"
+                android:text="@string/widget_uv_unavailable"
                 android:textColor="@color/widget_ink"
-                android:textSize="14sp"
+                android:textSize="12sp"
+                android:gravity="end"
+                android:breakStrategy="simple"
                 android:includeFontPadding="false" />
         </LinearLayout>
     </LinearLayout>
