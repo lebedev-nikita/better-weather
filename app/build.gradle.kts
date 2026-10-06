@@ -20,8 +20,8 @@ android {
         applicationId = "dev.betterweather"
         minSdk = 26
         targetSdk = 36
-        versionCode = 2
-        versionName = "0.1.1-rc.1"
+        versionCode = 3
+        versionName = "0.1.1-rc.2"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
@@ -66,4 +66,6 @@ dependencies {
     implementation("androidx.work:work-runtime-ktx:2.10.1")
     debugImplementation("androidx.compose.ui:ui-tooling")
     testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test:runner:1.7.0")
+    androidTestImplementation("junit:junit:4.13.2")
 }

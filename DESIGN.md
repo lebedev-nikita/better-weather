@@ -122,7 +122,7 @@ The type ramp comes from Material roles. Only the temperature display and three 
 - **Title:** `titleLarge` labels the city and forecast sections; `titleMedium` labels conditions and readings. Both are semibold. `titleSmall` identifies each day using the Material default.
 - **Body:** `bodyMedium` carries descriptions and guidance; `bodySmall` carries dates, age, unit context and detailed readings. Sizes and line heights remain Material defaults.
 - **Label:** `labelMedium` identifies metrics and hour labels; `labelSmall` carries precipitation percentages; `labelLarge` identifies the selected hour detail.
-- **Widget:** RemoteViews uses a light sans serif temperature (40sp), bold city (16sp), readings/condition (14sp), measurement labels (12sp), and age (11sp). These are widget-local adaptations, not replacements for the application type roles.
+- **Widget:** RemoteViews uses a light sans serif temperature (24–40sp, sized to fit its space), bold city (16sp), readings (14sp), condition (12sp), and measurement labels/age (11sp). These are widget-local adaptations, not replacements for the application type roles.
 
 **The Reading Role Rule.** Use the existing Material role for a new datum or label; reserve the oversized light display for the current temperature. Keep text in sp so Android font scaling applies.
 
@@ -136,7 +136,7 @@ Hours scroll horizontally with an 8dp gap. Measurement cells use a wrapping `Flo
 
 Search uses a fully expanded Material bottom sheet with IME padding. Results scroll within a maximum 340dp list. A reserved 4dp progress-indicator slot in the screen and search prevents the loading indicator itself from moving adjacent content. Error or status messages can still increase the surrounding area's height.
 
-The launcher widget resizes in both directions, declares a 240 × 150dp minimum, and targets a 4 × 2 launcher cell area. Launcher sizing remains host-controlled.
+The launcher widget resizes in both directions, declares a 240 × 150dp minimum, and targets a 4 × 2 launcher cell area. Launcher sizing remains host-controlled. City and update time share the header with a 48dp refresh target. The body places artwork on the left, temperature/conditions in the middle, and wind/UV readings aligned at the right. Wind direction is part of its label so the speed and unit stay together.
 
 ## Elevation & Depth
 
@@ -146,7 +146,7 @@ Custom data panels are flat `Surface` containers: grouping comes from tonal fill
 
 ## Shapes
 
-Rounded readings and status/detail containers share the small corner (12dp); measurement groups share the panel corner (16dp). The launcher widget has its own larger corner (24dp). Buttons, the outlined field and the modal sheet retain Material shapes. Controls and metric symbols use Material outlined vectors; the widget refresh icon is an Android vector drawable. Weather conditions use bundled, ready-made Weather Icons illustrations from Makin-Things / amCharts. These retain their original colors and are rendered as transparent lossless WebP assets: 112dp for current conditions, 40dp for hours and days, 64dp in the widget. Day/night artwork follows forecast `isDay`; unknown conditions display «—» instead of a misleading cloud. Source SVGs, conversion and licensing are in [third_party/weather-icons](third_party/weather-icons/README.md).
+Rounded readings and status/detail containers share the small corner (12dp); measurement groups share the panel corner (16dp). The launcher widget has its own larger corner (24dp). Buttons, the outlined field and the modal sheet retain Material shapes. Controls and metric symbols use Material outlined vectors; the widget refresh icon is an Android vector drawable. Weather conditions use bundled, ready-made Weather Icons illustrations from Makin-Things / amCharts. These retain their original colors and are rendered as transparent lossless WebP assets: 112dp for current conditions, 40dp for hours and days, 48dp in the widget. Day/night artwork follows forecast `isDay`; unknown conditions display «—» instead of a misleading cloud. Source SVGs, conversion and licensing are in [third_party/weather-icons](third_party/weather-icons/README.md).
 
 ## Components
 

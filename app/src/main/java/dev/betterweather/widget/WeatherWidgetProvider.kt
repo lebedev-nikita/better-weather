@@ -87,7 +87,10 @@ class WeatherWidgetProvider : AppWidgetProvider() {
             val artwork = forecast?.let { weatherIconResource(it.current.code, it.current.isDay) }
             views.setViewVisibility(R.id.widget_weather_icon, if (artwork != null) View.VISIBLE else View.GONE)
             if (artwork != null) views.setImageViewResource(R.id.widget_weather_icon, artwork)
-            views.setTextViewText(R.id.widget_wind, forecast?.let { "${it.current.windSpeed.decimal()} м/с · ${windDirection(it.current.windDirection)}" } ?: "—")
+            val direction = forecast?.current?.windDirection?.let(::windDirection)
+            views.setTextViewText(R.id.widget_wind_label,
+                context.getString(R.string.widget_wind_label) + (direction?.let { " · $it" } ?: ""))
+            views.setTextViewText(R.id.widget_wind, forecast?.current?.windSpeed?.let { "${it.decimal()} м/с" } ?: "—")
             views.setTextViewText(R.id.widget_uv, forecast?.currentUv(forecast.fetchedAt).decimal())
             val updated = forecast?.let {
                 val age = Duration.between(it.fetchedAt, Instant.now()).toHours()
