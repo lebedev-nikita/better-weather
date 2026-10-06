@@ -10,4 +10,9 @@
     <string name="widget_wind_unavailable">Ветер —</string>
     <string name="widget_uv_unavailable">UV-индекс —</string>
     <string name="reading_unavailable">—</string>
+    <string name="widget_updated_compact">Обн. %1$s</string>
+    <string name="widget_age_compact">%1$d ч назад</string>
+    <string name="widget_update_error_compact">%1$s · ошибка</string>
+    <string name="widget_choose_city_compact">Выберите город</string>
+    <string name="widget_uv_label_short">UV</string>
 </resources>

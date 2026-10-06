@@ -48,7 +48,16 @@ class WeatherWidgetLayoutTest {
         }
     }
 
-    @Test fun readingsRemainVisibleInCompactWidgetWithLargeFont() {
+    @Test fun readingsRemainVisibleInFullWidgetWithLargeFont() =
+        assertReadingLayout(R.layout.weather_widget, 132, 16f / 12f)
+
+    @Test fun readingsRemainVisibleAtMinimumResizableHeight() =
+        assertReadingLayout(R.layout.weather_widget_compact, 96, 14f / 12f)
+
+    @Test fun readingsRemainVisibleInShortLandscapeWidget() =
+        assertReadingLayout(R.layout.weather_widget_short, 48, 12f / 11f)
+
+    private fun assertReadingLayout(layoutId: Int, heightDp: Int, valueSizeRatio: Float) {
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         instrumentation.runOnMainSync {
             for (scale in listOf(1f, 1.3f)) {
@@ -57,17 +66,19 @@ class WeatherWidgetLayoutTest {
                 )
                 val density = context.resources.displayMetrics.density
                 for (width in listOf(240, 360)) {
-                    val remote = RemoteViews(context.packageName, R.layout.weather_widget).apply {
+                    val remote = RemoteViews(context.packageName, layoutId).apply {
                         setTextViewText(R.id.widget_city, "Тбилиси")
                         setTextViewText(R.id.widget_temperature, "−23°")
-                        setTextViewText(R.id.widget_condition, "Переменная облачность")
-                        setTextViewText(R.id.widget_wind, widgetReading("Ветер · СВ", "19,4\u00A0м/с"))
-                        setTextViewText(R.id.widget_uv, widgetReading("UV-индекс", "11,7"))
-                        setTextViewText(R.id.widget_updated, "Обновлено 09:00")
+                        if (layoutId != R.layout.weather_widget_short)
+                            setTextViewText(R.id.widget_condition, "Переменная облачность")
+                        setTextViewText(R.id.widget_wind, widgetReading(if (layoutId == R.layout.weather_widget_short) "" else "Ветер · СВ", "19,4\u00A0м/с", valueSizeRatio))
+                        setTextViewText(R.id.widget_uv, widgetReading(if (layoutId == R.layout.weather_widget_short) "UV" else "UV-индекс", "11,7", valueSizeRatio))
+                        setTextViewText(R.id.widget_updated,
+                            if (layoutId != R.layout.weather_widget) "Обн. 09:00" else "Обновлено 09:00")
                     }
                     val widget = remote.apply(context, FrameLayout(context)) as ViewGroup
                     val w = (width * density).roundToInt()
-                    val h = (132 * density).roundToInt()
+                    val h = (heightDp * density).roundToInt()
                     widget.measure(View.MeasureSpec.makeMeasureSpec(w, View.MeasureSpec.EXACTLY),
                         View.MeasureSpec.makeMeasureSpec(h, View.MeasureSpec.EXACTLY))
                     widget.layout(0, 0, w, h)
@@ -82,7 +93,7 @@ class WeatherWidgetLayoutTest {
                     if (width == 360) {
                         assertEquals("Wind should fit one line in the wide widget", 1, wind.layout.lineCount)
                         assertEquals("UV should fit one line in the wide widget", 1, uv.layout.lineCount)
-                    } else if (scale == 1.3f) {
+                    } else if (scale == 1.3f && layoutId != R.layout.weather_widget_short) {
                         assertTrue("Narrow readings should wrap instead of clipping", wind.layout.lineCount > 1)
                     }
                     for (id in listOf(R.id.widget_temperature, R.id.widget_wind, R.id.widget_uv, R.id.widget_updated)) {
@@ -90,10 +101,10 @@ class WeatherWidgetLayoutTest {
                         val bounds = Rect(0, 0, reading.width, reading.height)
                         widget.offsetDescendantRectToMyCoords(reading, bounds)
                         val name = context.resources.getResourceEntryName(id)
-                        assertTrue("$name clipped at ${width}×132dp, font $scale: $bounds",
+                        assertTrue("$name clipped at ${width}×${heightDp}dp, font $scale: $bounds",
                             bounds.top >= widget.paddingTop && bounds.bottom <= h - widget.paddingBottom &&
                                 bounds.left >= widget.paddingLeft && bounds.right <= w - widget.paddingRight)
-                        assertTrue("$name text clipped at ${width}×132dp, font $scale: ${reading.layout.height} > ${reading.height}",
+                        assertTrue("$name text clipped at ${width}×${heightDp}dp, font $scale: ${reading.layout.height} > ${reading.height}",
                             reading.layout.height <= reading.height - reading.compoundPaddingTop - reading.compoundPaddingBottom &&
                                 (0 until reading.layout.lineCount).all {
                                     reading.layout.getEllipsisCount(it) == 0 &&
