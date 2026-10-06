@@ -47,7 +47,13 @@ class WeatherWidgetProvider : AppWidgetProvider() {
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
-        if (intent.action == ACTION_REFRESH) {
+        if (intent.action == Intent.ACTION_MY_PACKAGE_REPLACED) {
+            val manager = AppWidgetManager.getInstance(context)
+            if (manager.getAppWidgetIds(ComponentName(context, WeatherWidgetProvider::class.java)).isNotEmpty()) {
+                schedule(context)
+                updateAll(context)
+            }
+        } else if (intent.action == ACTION_REFRESH) {
             updateAll(context, context.getString(R.string.widget_updating))
             refresh(context)
         }
@@ -59,10 +65,10 @@ class WeatherWidgetProvider : AppWidgetProvider() {
         private const val ACTION_REFRESH = "dev.betterweather.REFRESH_WIDGET"
         private val network = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
 
-        fun schedule(context: Context) {
-            WorkManager.getInstance(context).enqueueUniquePeriodicWork(PERIODIC, ExistingPeriodicWorkPolicy.KEEP,
-                PeriodicWorkRequestBuilder<WeatherRefreshWorker>(1, TimeUnit.HOURS).setConstraints(network).build())
-        }
+        fun schedule(context: Context) =
+            // UPDATE also migrates the hourly work retained from older versions.
+            WorkManager.getInstance(context).enqueueUniquePeriodicWork(PERIODIC, ExistingPeriodicWorkPolicy.UPDATE,
+                PeriodicWorkRequestBuilder<WeatherRefreshWorker>(15, TimeUnit.MINUTES).setConstraints(network).build())
 
         fun refresh(context: Context) {
             // Manual attempts run even offline so that the widget leaves its loading state.
