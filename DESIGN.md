@@ -136,7 +136,7 @@ Hours scroll horizontally with an 8dp gap. Measurement cells use a wrapping `Flo
 
 Search uses a fully expanded Material bottom sheet with IME padding. Results scroll within a maximum 340dp list. A reserved 4dp progress-indicator slot in the screen and search prevents the loading indicator itself from moving adjacent content. Error or status messages can still increase the surrounding area's height.
 
-The launcher widget resizes in both directions, declares a 240 × 150dp minimum, and targets a 4 × 2 launcher cell area. Launcher sizing remains host-controlled. City and update time share the header with a 48dp refresh target. The body places artwork on the left, temperature/conditions in the middle, and wind/UV readings aligned at the right. Wind direction is part of its label so the speed and unit stay together.
+The launcher widget resizes in both directions, declares a 240 × 150dp minimum, and targets a 4 × 2 launcher cell area. Launcher sizing remains host-controlled. City and update time form a full-width header. The body places artwork on the left, temperature/conditions in the middle, and wind/UV readings aligned at the right. Wind direction is part of its label so the speed and unit stay together.
 
 ## Elevation & Depth
 
@@ -146,7 +146,7 @@ Custom data panels are flat `Surface` containers: grouping comes from tonal fill
 
 ## Shapes
 
-Rounded readings and status/detail containers share the small corner (12dp); measurement groups share the panel corner (16dp). The launcher widget has its own larger corner (24dp). Buttons, the outlined field and the modal sheet retain Material shapes. Controls and metric symbols use Material outlined vectors; the widget refresh icon is an Android vector drawable. Weather conditions use bundled, ready-made Weather Icons illustrations from Makin-Things / amCharts. These retain their original colors and are rendered as transparent lossless WebP assets: 112dp for current conditions, 40dp for hours and days, 48dp in the widget. Day/night artwork follows forecast `isDay`; unknown conditions display «—» instead of a misleading cloud. Source SVGs, conversion and licensing are in [third_party/weather-icons](third_party/weather-icons/README.md).
+Rounded readings and status/detail containers share the small corner (12dp); measurement groups share the panel corner (16dp). The launcher widget has its own larger corner (24dp). Buttons, the outlined field and the modal sheet retain Material shapes. Controls and metric symbols use Material outlined vectors. Weather conditions use bundled, ready-made Weather Icons illustrations from Makin-Things / amCharts. These retain their original colors and are rendered as transparent lossless WebP assets: 112dp for current conditions, 40dp for hours and days, 48dp in the widget. Day/night artwork follows forecast `isDay`; unknown conditions display «—» instead of a misleading cloud. Source SVGs, conversion and licensing are in [third_party/weather-icons](third_party/weather-icons/README.md).
 
 ## Components
 
@@ -164,7 +164,7 @@ City search uses a full-width, single-line Material `OutlinedTextField`, with a 
 
 ### Navigation
 
-The top app bar pairs the selected city with a dropdown affordance and refresh. Selecting the city opens the search sheet; city choice or foreground geolocation dismisses it before loading. The Material sheet handles dismissal. The widget body opens the app while its separate refresh control updates data. There are no tabs, chips, navigation rail or navigation bar in the shipped system.
+The top app bar pairs the selected city with a dropdown affordance and refresh. Selecting the city opens the search sheet; city choice or foreground geolocation dismisses it before loading. The Material sheet handles dismissal. The whole widget opens the app, which refreshes data on each foreground opening and updates the widget. There are no tabs, chips, navigation rail or navigation bar in the shipped system.
 
 ### Hourly reading and inline detail
 
@@ -176,7 +176,7 @@ Flat rows retain the same three-column reading order and separate days with `out
 
 ### Launcher widget
 
-A compact RemoteViews panel presents city, refresh, temperature, condition with the same weather illustration as the app, wind, UV and data age. The refresh target is 48dp square. Its background and foreground adapt through day/night resources; it does not embed Compose or a separate forecast navigation system.
+A compact RemoteViews panel presents city, temperature, condition with the same weather illustration as the app, wind, UV and data age. There is no separate refresh control; opening the application refreshes the forecast and widget, with periodic background updates between openings. Its background and foreground adapt through day/night resources; it does not embed Compose or a separate forecast navigation system.
 
 ## Do's and Don'ts
 
@@ -193,6 +193,6 @@ A compact RemoteViews panel presents city, refresh, temperature, condition with 
 - **Don't** hardcode light colors into new Compose components.
 - **Don't** turn implementation defaults or the descriptive North Star into a claim of approved branding.
 
-Not canonized: the widget status text's literal «↻» is a text cue, not part of the vector icon system; unspecified Material defaults and the unused headline override are not promoted to custom brand tokens.
+Unspecified Material defaults and the unused headline override are not promoted to custom brand tokens.
 
 Source evidence: [WeatherTheme.kt](app/src/main/java/dev/betterweather/ui/WeatherTheme.kt), [WeatherScreen.kt](app/src/main/java/dev/betterweather/ui/WeatherScreen.kt), [WeatherIcon.kt](app/src/main/java/dev/betterweather/ui/WeatherIcon.kt), [widget layout](app/src/main/res/layout/weather_widget.xml), [widget colors](app/src/main/res/values/colors.xml), [night colors](app/src/main/res/values-night/colors.xml), [widget background](app/src/main/res/drawable/widget_background.xml), [widget sizing](app/src/main/res/xml/weather_widget_info.xml). Surface direction remains in [.impeccable/surfaces/weather.md](.impeccable/surfaces/weather.md).

@@ -3,6 +3,7 @@ package dev.betterweather.ui
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import dev.betterweather.R
 import dev.betterweather.WeatherApplication
 import dev.betterweather.data.WeatherForecast
 import dev.betterweather.data.WeatherPlace
@@ -15,7 +16,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.io.IOException
-import java.time.Duration
 import java.time.Instant
 
 data class WeatherUiState(
@@ -46,7 +46,6 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     private var searchJob: Job? = null
 
     init {
-        onResume()
         viewModelScope.launch {
             while (true) {
                 delay(60_000)
@@ -55,11 +54,12 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    fun onResume() {
-        if (refreshJob?.isActive == true) return
+    fun onOpen() {
+        if (refreshJob?.isActive == true || _state.value.locating) return
         val cached = repository.cached()
         _state.update { it.copy(forecast = cached ?: it.forecast, now = Instant.now()) }
-        if (cached == null || Duration.between(cached.fetchedAt, Instant.now()).toMinutes() >= 30) refresh()
+        WeatherWidgetProvider.updateAll(getApplication())
+        refresh()
     }
 
     fun refresh(place: WeatherPlace? = null) {
@@ -79,6 +79,8 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
                         else if (error is IOException) "Не удалось обновить погоду. Проверьте интернет и попробуйте снова."
                         else "Не удалось прочитать прогноз. Попробуйте обновить ещё раз.")
                 }
+                if (place == null) WeatherWidgetProvider.updateAll(getApplication(),
+                    getApplication<Application>().getString(R.string.widget_refresh_failed))
             }
         }
     }

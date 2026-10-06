@@ -35,9 +35,9 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.onResume()
+    override fun onStart() {
+        super.onStart()
+        viewModel.onOpen()
     }
 
     private fun requestLocation() {

@@ -53,16 +53,12 @@ class WeatherWidgetProvider : AppWidgetProvider() {
                 schedule(context)
                 updateAll(context)
             }
-        } else if (intent.action == ACTION_REFRESH) {
-            updateAll(context, context.getString(R.string.widget_updating))
-            refresh(context)
         }
     }
 
     companion object {
         private const val PERIODIC = "weather-widget-periodic"
         private const val IMMEDIATE = "weather-widget-refresh"
-        private const val ACTION_REFRESH = "dev.betterweather.REFRESH_WIDGET"
         private val network = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
 
         fun schedule(context: Context) =
@@ -71,7 +67,7 @@ class WeatherWidgetProvider : AppWidgetProvider() {
                 PeriodicWorkRequestBuilder<WeatherRefreshWorker>(15, TimeUnit.MINUTES).setConstraints(network).build())
 
         fun refresh(context: Context) {
-            // Manual attempts run even offline so that the widget leaves its loading state.
+            // The initial widget refresh also attempts to load data when offline.
             WorkManager.getInstance(context).enqueueUniqueWork(IMMEDIATE, ExistingWorkPolicy.KEEP,
                 OneTimeWorkRequestBuilder<WeatherRefreshWorker>().build())
         }
@@ -83,10 +79,7 @@ class WeatherWidgetProvider : AppWidgetProvider() {
             val forecast = (context.applicationContext as WeatherApplication).repository.cached()
             val views = RemoteViews(context.packageName, R.layout.weather_widget)
             val openApp = PendingIntent.getActivity(context, 0, Intent(context, MainActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-            val refreshIntent = PendingIntent.getBroadcast(context, 1,
-                Intent(context, WeatherWidgetProvider::class.java).setAction(ACTION_REFRESH), PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
             views.setOnClickPendingIntent(R.id.widget_root, openApp)
-            views.setOnClickPendingIntent(R.id.widget_refresh, refreshIntent)
             views.setTextViewText(R.id.widget_city, forecast?.place?.name ?: context.getString(R.string.app_name))
             views.setTextViewText(R.id.widget_temperature, forecast?.current?.temperature.degrees())
             views.setTextViewText(R.id.widget_condition, forecast?.let { weatherDescription(it.current.code, it.current.isDay) } ?: context.getString(R.string.widget_choose_city))
@@ -100,7 +93,7 @@ class WeatherWidgetProvider : AppWidgetProvider() {
             views.setTextViewText(R.id.widget_uv, forecast?.currentUv(forecast.fetchedAt).decimal())
             val updated = forecast?.let {
                 val age = Duration.between(it.fetchedAt, Instant.now()).toHours()
-                if (age >= 1) "Данные ${age} ч назад · нажмите ↻"
+                if (age >= 1) "Данные ${age} ч назад · откройте приложение"
                 else "Обновлено ${it.localNow(it.fetchedAt).format(DateTimeFormatter.ofPattern("HH:mm"))}"
             } ?: context.getString(R.string.widget_tap_to_open)
             views.setTextViewText(R.id.widget_updated, status?.let { "$it · $updated" } ?: updated)
