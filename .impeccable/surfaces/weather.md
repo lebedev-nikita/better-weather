@@ -10,13 +10,13 @@ FORM: A daily observation ledger translated into native Material 3: aligned read
 
 THESIS: A compact weather station: location, conditions, hours, then seven aligned daily readings on a continuous screen.
 
-OWN-WORLD: Cool pale blue surfaces, deep blue ink, cobalt controls; warm sun icons. Dark mode uses ink-blue surfaces. Material type and controls; units stay beside readings.
+OWN-WORLD: White application and widget backgrounds in light mode, pale blue measurement panels, deep blue ink, cobalt controls; warm sun icons. Dark mode uses ink-blue surfaces. Material type and controls; units stay beside readings.
 
 STORY: Choose a city or current location, read conditions, scan today's hours and the week, add the same readings to the home screen.
 
 FIRST VIEWPORT: City and update control at top, temperature and weather symbol, wind/UV/humidity strip, then a horizontally scrolling hourly timeline.
 
-SIGNATURE: Hour selection reveals wind, rain probability and UV inline without navigation. The current hour is labelled «Сейчас» and selected by default; the selection follows the user's choice. Weather glyphs share one stroke system.
+SIGNATURE: Hour selection reveals wind, rain probability and UV inline without navigation. The current hour is labelled «Сейчас» and selected by default; the selection follows the user's choice. Weather conditions share ready-made colored Weather Icons artwork from Makin-Things / amCharts, including day/night variants; app and widget use the same mapping.
 
 REACH: Wide screens arrange current conditions and forecasts in two columns; narrow screens stack. Loading preserves existing data; offline and outdated snapshots identify their age. Material sheets and system Back.
 

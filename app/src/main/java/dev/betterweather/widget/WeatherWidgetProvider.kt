@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.view.View
 import android.widget.RemoteViews
 import androidx.work.Constraints
 import androidx.work.CoroutineWorker
@@ -23,6 +24,7 @@ import dev.betterweather.data.decimal
 import dev.betterweather.data.degrees
 import dev.betterweather.data.weatherDescription
 import dev.betterweather.data.windDirection
+import dev.betterweather.ui.weatherIconResource
 import kotlinx.coroutines.CancellationException
 import java.time.Duration
 import java.time.Instant
@@ -82,6 +84,9 @@ class WeatherWidgetProvider : AppWidgetProvider() {
             views.setTextViewText(R.id.widget_city, forecast?.place?.name ?: context.getString(R.string.app_name))
             views.setTextViewText(R.id.widget_temperature, forecast?.current?.temperature.degrees())
             views.setTextViewText(R.id.widget_condition, forecast?.let { weatherDescription(it.current.code, it.current.isDay) } ?: context.getString(R.string.widget_choose_city))
+            val artwork = forecast?.let { weatherIconResource(it.current.code, it.current.isDay) }
+            views.setViewVisibility(R.id.widget_weather_icon, if (artwork != null) View.VISIBLE else View.GONE)
+            if (artwork != null) views.setImageViewResource(R.id.widget_weather_icon, artwork)
             views.setTextViewText(R.id.widget_wind, forecast?.let { "${it.current.windSpeed.decimal()} м/с · ${windDirection(it.current.windDirection)}" } ?: "—")
             views.setTextViewText(R.id.widget_uv, forecast?.currentUv(forecast.fetchedAt).decimal())
             val updated = forecast?.let {

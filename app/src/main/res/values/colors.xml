@@ -1,5 +1,5 @@
 <resources>
-    <color name="widget_background">#EAF2FF</color>
+    <color name="widget_background">#FFFFFF</color>
     <color name="widget_ink">#152A46</color>
     <color name="widget_secondary">#445D79</color>
     <color name="widget_accent">#235BCD</color>

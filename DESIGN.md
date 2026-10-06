@@ -9,7 +9,7 @@ colors:
   secondary-container: "#E4EDFA"
   on-secondary-container: "#243E5D"
   sun: "#805400"
-  surface: "#F5F8FE"
+  surface: "#FFFFFF"
   ink: "#152A46"
   surface-variant: "#EAF0FA"
   secondary-ink: "#445D79"
@@ -26,7 +26,7 @@ colors:
   dark-surface-variant: "#1C2D43"
   dark-secondary-ink: "#B7CAE1"
   dark-divider: "#354A64"
-  widget-surface: "#EAF2FF"
+  widget-surface: "#FFFFFF"
   dark-widget-surface: "#192A40"
 typography:
   display:
@@ -71,11 +71,6 @@ components:
     backgroundColor: "{colors.secondary-container}"
     rounded: "{rounded.reading}"
     padding: "14dp"
-  widget-prompt:
-    backgroundColor: "{colors.primary-container}"
-    textColor: "{colors.on-primary-container}"
-    rounded: "{rounded.panel}"
-    padding: "20dp"
 ---
 
 # Design System: Better Weather
@@ -96,19 +91,19 @@ This is a description of the shipped native implementation, not a user-approved 
 
 ## Colors
 
-A cool blue primary and neutral palette supports a restrained warm weather accent.
+A white application and widget background in light mode supports cool blue controls and a restrained warm weather accent. The dark scheme follows the system setting.
 
 ### Primary
-- **Cobalt / pale blue:** `primary` colors actions, measurement icons and rain probabilities; `primary-container` marks the selected hour and widget prompt. The prompt uses `on-primary-container`; native filled buttons use `on-primary`.
+- **Cobalt / pale blue:** `primary` colors actions, measurement icons and rain probabilities; `primary-container` marks the selected hour; native filled buttons use `on-primary`.
 
 ### Secondary
 - **Detail blue:** `secondary-container` holds the selected hour's details, with supporting text in `on-secondary-container`.
 
 ### Tertiary
-- **Sun amber:** `sun` maps to Material `tertiary`, used for the clear daytime icon and empty-state sun. Other weather symbols use `primary`.
+- **Sun amber:** `sun` maps to Material `tertiary`, reserved for semantic accents. Weather illustrations keep their upstream colors: amber sun, pale blue clouds, blue rain, and a cool moon; they are not tinted by the theme.
 
 ### Neutral
-- **Pale field / blue ink:** `surface` and `ink` map to Material `surface` and `onSurface`; `surface-variant` groups current measurements. `secondary-ink` supplies metadata and labels; `divider` separates daily and city-result rows.
+- **White field / blue ink:** `surface` and `ink` map to Material `surface` and `onSurface`; `surface-variant` groups current measurements. `secondary-ink` supplies metadata and labels; `divider` separates daily and city-result rows.
 - **Widget field:** `widget-surface` is the RemoteViews background. Its text and accent share the application scheme's corresponding values.
 - **Dark counterparts:** each `dark-*` entry is the corresponding system-dark role. The app selects these through `isSystemInDarkTheme()`; widget resources select them through `values-night`. Wallpaper-derived Dynamic Color is not implemented. Error colors retain Material defaults rather than defining a custom error palette.
 
@@ -135,7 +130,7 @@ The type ramp comes from Material roles. Only the temperature display and three 
 
 The application is a single vertically scrolling surface beneath a Material top app bar. `Scaffold` supplies content insets; the app bar owns the status-bar inset. Page insets are 20dp horizontally, with 24dp between major stacked sections and at the bottom. Local component spacing remains denser than section spacing.
 
-At available content width **840dp**, current conditions and the widget prompt form the left column, and hourly/week forecasts form the right. Column weights are 0.9:1.3 with a 36dp gap. Below that threshold the sections stack. This is a content layout breakpoint, not a navigation breakpoint; the app has one main destination and no bottom navigation.
+At available content width **840dp**, current conditions form the left column, and hourly/week forecasts form the right. Column weights are 0.9:1.3 with a 36dp gap. Below that threshold the sections stack. This is a content layout breakpoint, not a navigation breakpoint; the app has one main destination and no bottom navigation.
 
 Hours scroll horizontally with an 8dp gap. Measurement cells use a wrapping `FlowRow` with at most three items per row. Day rows align their dates on the left, condition and precipitation in the middle, and high/low readings on the right.
 
@@ -151,17 +146,17 @@ Custom data panels are flat `Surface` containers: grouping comes from tonal fill
 
 ## Shapes
 
-Rounded readings and status/detail containers share the small corner (12dp); measurement groups and the widget prompt share the panel corner (16dp). The launcher widget has its own larger corner (24dp). Buttons, the outlined field and the modal sheet retain Material shapes. Icons use Material outlined vectors; the widget refresh icon is an Android vector drawable.
+Rounded readings and status/detail containers share the small corner (12dp); measurement groups share the panel corner (16dp). The launcher widget has its own larger corner (24dp). Buttons, the outlined field and the modal sheet retain Material shapes. Controls and metric symbols use Material outlined vectors; the widget refresh icon is an Android vector drawable. Weather conditions use bundled, ready-made Weather Icons illustrations from Makin-Things / amCharts. These retain their original colors and are rendered as transparent lossless WebP assets: 112dp for current conditions, 40dp for hours and days, 64dp in the widget. Day/night artwork follows forecast `isDay`; unknown conditions display «—» instead of a misleading cloud. Source SVGs, conversion and licensing are in [third_party/weather-icons](third_party/weather-icons/README.md).
 
 ## Components
 
 ### Buttons
 
-Native Material `Button`, `TextButton` and `IconButton` provide interaction states. Filled buttons initiate city choice in the empty state; text buttons provide location, retry, widget and attribution actions. Refresh is an icon button in the app bar. Busy state disables conflicting location/city/refresh actions. Default component paddings and shapes are inherited; selected text actions remove horizontal content padding. No custom hover or focus treatment is configured.
+Native Material `Button`, `TextButton` and `IconButton` provide interaction states. Filled buttons initiate city choice in the empty state; text buttons provide location, retry and attribution actions. Refresh is an icon button in the app bar. Busy state disables conflicting location/city/refresh actions. Default component paddings and shapes are inherited; selected text actions remove horizontal content padding. No custom hover or focus treatment is configured.
 
 ### Cards / Containers
 
-The metric panel uses `surfaceVariant`, the widget prompt uses `primaryContainer`, and inline hour detail uses `secondaryContainer`. Apply the documented small/panel corners and existing internal spacing. Error feedback uses a small-corner Material `errorContainer` with `onErrorContainer` and an inline retry action.
+The metric panel uses `surfaceVariant`, and inline hour detail uses `secondaryContainer`. Apply the documented small/panel corners and existing internal spacing. Error feedback uses a small-corner Material `errorContainer` with `onErrorContainer` and an inline retry action.
 
 ### Inputs / Fields
 
@@ -173,7 +168,7 @@ The top app bar pairs the selected city with a dropdown affordance and refresh. 
 
 ### Hourly reading and inline detail
 
-Each hour is a 76dp-wide rounded selectable surface containing time, a weather vector, temperature and precipitation. Selection uses `primaryContainer`; unselected hours use `surface`. The accessible description includes time, temperature, rain probability and selection. Current time is labelled «Сейчас»; initial selection chooses the current hour, falling back to the first available reading. User choice persists for the selected place and local day. The selected hour's wind, precipitation and UV appear directly below the timeline.
+Each hour is a 76dp-wide rounded selectable surface containing time, a weather illustration, temperature and precipitation. Selection uses `primaryContainer`; unselected hours use `surface`. The accessible description includes time, temperature, rain probability and selection. Current time is labelled «Сейчас»; initial selection chooses the current hour, falling back to the first available reading. User choice persists for the selected place and local day. The selected hour's wind, precipitation and UV appear directly below the timeline.
 
 ### Daily reading
 
@@ -181,7 +176,7 @@ Flat rows retain the same three-column reading order and separate days with `out
 
 ### Launcher widget
 
-A compact RemoteViews panel presents city, refresh, temperature, condition, wind, UV and data age. The refresh target is 48dp square. Its background and foreground adapt through day/night resources; it does not embed Compose or a separate forecast navigation system.
+A compact RemoteViews panel presents city, refresh, temperature, condition with the same weather illustration as the app, wind, UV and data age. The refresh target is 48dp square. Its background and foreground adapt through day/night resources; it does not embed Compose or a separate forecast navigation system.
 
 ## Do's and Don'ts
 

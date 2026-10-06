@@ -17,6 +17,7 @@
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
         <TextView android:id="@+id/widget_temperature" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/reading_unavailable" android:textSize="40sp" android:fontFamily="sans-serif-light" android:textColor="@color/widget_ink" android:includeFontPadding="false" />
         <TextView android:id="@+id/widget_condition" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="14dp" android:text="@string/widget_choose_city" android:textSize="14sp" android:textColor="@color/widget_secondary" android:maxLines="2" android:ellipsize="end" />
+        <ImageView android:id="@+id/widget_weather_icon" android:layout_width="64dp" android:layout_height="64dp" android:layout_marginStart="8dp" android:src="@drawable/weather_cloudy_1_day" android:scaleType="fitCenter" android:importantForAccessibility="no" />
     </LinearLayout>
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:baselineAligned="false">
         <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="2" android:orientation="vertical">

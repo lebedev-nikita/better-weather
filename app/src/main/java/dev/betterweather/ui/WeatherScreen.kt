@@ -27,7 +27,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowForward
-import androidx.compose.material.icons.automirrored.outlined.AddToHomeScreen
 import androidx.compose.material.icons.outlined.Air
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.ExpandMore
@@ -47,8 +46,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHost
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -57,8 +54,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -83,7 +78,6 @@ import dev.betterweather.data.percent
 import dev.betterweather.data.uvDescription
 import dev.betterweather.data.weatherDescription
 import dev.betterweather.data.windDirection
-import kotlinx.coroutines.launch
 import java.time.Duration
 import java.time.Instant
 import java.time.LocalDate
@@ -96,17 +90,14 @@ private val dateFormat = DateTimeFormatter.ofPattern("EEEE, d MMMM", russian)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WeatherScreen(viewModel: WeatherViewModel, onLocation: () -> Unit, onAddWidget: () -> Boolean) {
+fun WeatherScreen(viewModel: WeatherViewModel, onLocation: () -> Unit) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val search by viewModel.search.collectAsStateWithLifecycle()
     var showSearch by rememberSaveable { mutableStateOf(false) }
-    val snackbar = remember { SnackbarHostState() }
-    val scope = rememberCoroutineScope()
     val forecast = state.forecast
     val busy = state.loading || state.locating
 
     Scaffold(
-        snackbarHost = { SnackbarHost(snackbar) },
         topBar = {
             // Scaffold applies the system insets to content; top bar owns the status inset.
             androidx.compose.material3.TopAppBar(
@@ -169,7 +160,7 @@ fun WeatherScreen(viewModel: WeatherViewModel, onLocation: () -> Unit, onAddWidg
                     item {
                         Column(Modifier.fillMaxWidth().padding(vertical = 40.dp), horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                            Icon(Icons.Outlined.WbSunny, null, Modifier.size(56.dp), tint = MaterialTheme.colorScheme.tertiary)
+                            WeatherIcon(0, Modifier.size(88.dp))
                             Text(if (busy) "Загружаем прогноз" else "Пока нет прогноза", style = MaterialTheme.typography.headlineSmall)
                             Text("Выберите город или своё местоположение.", style = MaterialTheme.typography.bodyMedium)
                             Button(onClick = { showSearch = true }, enabled = !busy) { Text("Выбрать город") }
@@ -185,9 +176,6 @@ fun WeatherScreen(viewModel: WeatherViewModel, onLocation: () -> Unit, onAddWidg
                         Row(horizontalArrangement = Arrangement.spacedBy(36.dp), verticalAlignment = Alignment.Top) {
                             Column(Modifier.weight(0.9f), verticalArrangement = Arrangement.spacedBy(24.dp)) {
                                 CurrentConditions(forecast, state.now)
-                                WidgetSection(onAddWidget = {
-                                    if (!onAddWidget()) scope.launch { snackbar.showSnackbar("Удерживайте свободное место на главном экране → Виджеты → Better Weather.") }
-                                })
                             }
                             Column(Modifier.weight(1.3f), verticalArrangement = Arrangement.spacedBy(28.dp)) {
                                 HourlySection(forecast, state.now)
@@ -199,11 +187,6 @@ fun WeatherScreen(viewModel: WeatherViewModel, onLocation: () -> Unit, onAddWidg
                     item { CurrentConditions(forecast, state.now) }
                     item { HourlySection(forecast, state.now) }
                     item { WeekSection(forecast, state.now) }
-                    item {
-                        WidgetSection(onAddWidget = {
-                            if (!onAddWidget()) scope.launch { snackbar.showSnackbar("Удерживайте свободное место на главном экране → Виджеты → Better Weather.") }
-                        })
-                    }
                 }
                 item { Attribution() }
             }
@@ -231,7 +214,7 @@ private fun CurrentConditions(forecast: WeatherForecast, now: Instant) {
                     modifier = Modifier.semantics { contentDescription = "Температура ${current.temperature.degrees()} Цельсия" })
                 Text(weatherDescription(current.code, current.isDay), style = MaterialTheme.typography.titleMedium)
             }
-            WeatherIcon(current.code, Modifier.padding(start = 12.dp, end = 8.dp).size(72.dp), current.isDay)
+            WeatherIcon(current.code, Modifier.padding(start = 12.dp).size(112.dp), current.isDay)
         }
         Text("Ощущается как ${current.feelsLike.degrees()}  ·  ${today?.high.degrees()} / ${today?.low.degrees()}",
             style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -302,7 +285,7 @@ private fun HourReading(hour: HourWeather, selected: Boolean, current: Boolean, 
             verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Text(if (current) "Сейчас" else hour.time.format(hourFormat), style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant)
-            WeatherIcon(hour.code, Modifier.size(28.dp), hour.isDay)
+            WeatherIcon(hour.code, Modifier.size(40.dp), hour.isDay)
             Text(hour.temperature.degrees(), style = MaterialTheme.typography.titleMedium)
             Text(hour.precipitationProbability.percent(), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.primary)
         }
@@ -337,28 +320,12 @@ private fun DayReading(day: DayWeather, today: LocalDate) {
                 style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            WeatherIcon(day.code, modifier = Modifier.size(24.dp))
+            WeatherIcon(day.code, modifier = Modifier.size(40.dp))
             Text(day.precipitationProbability.percent(), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.primary)
         }
         Column(horizontalAlignment = Alignment.End) {
             Text(day.high.degrees(), style = MaterialTheme.typography.titleMedium)
             Text(day.low.degrees(), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        }
-    }
-}
-
-@Composable
-private fun WidgetSection(onAddWidget: () -> Unit) {
-    Surface(shape = RoundedCornerShape(16.dp), color = MaterialTheme.colorScheme.primaryContainer) {
-        Column(Modifier.fillMaxWidth().padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text("Погода на главном экране", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onPrimaryContainer)
-            Text("Температура, ветер и UV-индекс — в одном виджете.", style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onPrimaryContainer)
-            TextButton(onClick = onAddWidget, contentPadding = PaddingValues(horizontal = 0.dp)) {
-                Icon(Icons.AutoMirrored.Outlined.AddToHomeScreen, null, Modifier.size(20.dp))
-                Spacer(Modifier.width(8.dp))
-                Text("Добавить виджет")
-            }
         }
     }
 }
@@ -373,6 +340,9 @@ private fun Attribution() {
             Text("Данные: Open-Meteo · CC BY 4.0", style = MaterialTheme.typography.labelMedium)
             Spacer(Modifier.width(6.dp))
             Icon(Icons.AutoMirrored.Outlined.ArrowForward, null, Modifier.size(16.dp))
+        }
+        TextButton(onClick = { uri.openUri("https://github.com/Makin-Things/weather-icons") }, contentPadding = PaddingValues(horizontal = 0.dp)) {
+            Text("Иллюстрации: amCharts / Makin-Things", style = MaterialTheme.typography.labelMedium)
         }
     }
 }

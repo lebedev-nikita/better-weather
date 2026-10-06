@@ -1,8 +1,6 @@
 package dev.betterweather
 
 import android.Manifest
-import android.appwidget.AppWidgetManager
-import android.content.ComponentName
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -16,7 +14,6 @@ import dev.betterweather.location.deviceLocation
 import dev.betterweather.ui.WeatherScreen
 import dev.betterweather.ui.WeatherTheme
 import dev.betterweather.ui.WeatherViewModel
-import dev.betterweather.widget.WeatherWidgetProvider
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
 import java.util.Locale
@@ -33,7 +30,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             WeatherTheme {
-                WeatherScreen(viewModel, onLocation = ::requestLocation, onAddWidget = ::addWidget)
+                WeatherScreen(viewModel, onLocation = ::requestLocation)
             }
         }
     }
@@ -67,8 +64,4 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun addWidget(): Boolean {
-        val manager = AppWidgetManager.getInstance(this)
-        return manager.isRequestPinAppWidgetSupported && manager.requestPinAppWidget(ComponentName(this, WeatherWidgetProvider::class.java), null, null)
-    }
 }
