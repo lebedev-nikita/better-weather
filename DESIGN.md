@@ -122,7 +122,7 @@ The type ramp comes from Material roles. Only the temperature display and three 
 - **Title:** `titleLarge` labels the city and forecast sections; `titleMedium` labels conditions and readings. Both are semibold. `titleSmall` identifies each day using the Material default.
 - **Body:** `bodyMedium` carries descriptions and guidance; `bodySmall` carries dates, age, unit context and detailed readings. Sizes and line heights remain Material defaults.
 - **Label:** `labelMedium` identifies metrics and hour labels; `labelSmall` carries precipitation percentages; `labelLarge` identifies the selected hour detail.
-- **Widget:** RemoteViews uses a light sans serif temperature (22–40sp, sized to fit its space), bold city (16sp), emphasized readings (14sp), condition/measurement labels (12sp), and age (11sp). These are widget-local adaptations, not replacements for the application type roles.
+- **Widget:** RemoteViews uses a light sans serif temperature (22–40sp, sized to fit its space), bold city (16sp), emphasized readings (16sp), condition/measurement labels (12sp), and age (11sp). These are widget-local adaptations, not replacements for the application type roles.
 
 **The Reading Role Rule.** Use the existing Material role for a new datum or label; reserve the oversized light display for the current temperature. Keep text in sp so Android font scaling applies.
 
@@ -136,7 +136,7 @@ Hours scroll horizontally with an 8dp gap. Measurement cells use a wrapping `Flo
 
 Search uses a fully expanded Material bottom sheet with IME padding. Results scroll within a maximum 340dp list. A reserved 4dp progress-indicator slot in the screen and search prevents the loading indicator itself from moving adjacent content. Error or status messages can still increase the surrounding area's height.
 
-The launcher widget resizes in both directions, declares a 240 × 140dp minimum, and targets a 4 × 2 launcher cell area. Launcher sizing remains host-controlled. City and update time share one header row, with the timestamp aligned at the right edge. The body places artwork on the left, temperature/conditions in the middle, and wind/UV readings aligned at the right. Each measurement combines its label and value in one right-aligned line, wrapping naturally when the widget is narrow. Wind direction is part of its label and the speed/unit use a nonbreaking space.
+The launcher widget resizes in both directions, declares a 240 × 140dp minimum, and targets a 4 × 2 launcher cell area. Launcher sizing remains host-controlled. City and update time share one header row, with the timestamp aligned at the right edge. The body places artwork on the left, temperature/conditions in the middle, and wind/UV readings aligned at the right. Each measurement combines its label and value in one right-aligned line, with an en-space gap and larger bold values for quick scanning. A thin theme-aware rule separates wind and UV. Readings wrap naturally when the widget is narrow. Wind direction is part of its label and the speed/unit use a nonbreaking space.
 
 ## Elevation & Depth
 

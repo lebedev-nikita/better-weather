@@ -2,7 +2,7 @@
 
 Нативное приложение погоды для **Android 8.0+**, написанное на **Kotlin и Jetpack Compose**. Русский интерфейс, светлая и тёмная темы, °C и м/с. API-ключ и регистрация не нужны.
 
-Релиз-кандидат: [v0.1.1-rc.5](https://github.com/lebedev-nikita/better-weather/releases/tag/v0.1.1-rc.5). Для установки скачайте `BetterWeather-0.1.1-rc.5.apk` из приложенных файлов; SHA-256 находится рядом. Стабильный выпуск: [v0.1.0](https://github.com/lebedev-nikita/better-weather/releases/tag/v0.1.0).
+Релиз-кандидат: [v0.1.1-rc.6](https://github.com/lebedev-nikita/better-weather/releases/tag/v0.1.1-rc.6). Для установки скачайте `BetterWeather-0.1.1-rc.6.apk` из приложенных файлов; SHA-256 находится рядом. Стабильный выпуск: [v0.1.0](https://github.com/lebedev-nikita/better-weather/releases/tag/v0.1.0).
 
 ## Возможности
 

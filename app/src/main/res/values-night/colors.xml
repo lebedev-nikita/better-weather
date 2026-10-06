@@ -3,4 +3,5 @@
     <color name="widget_ink">#E5EFFF</color>
     <color name="widget_secondary">#B7CAE1</color>
     <color name="widget_accent">#A9C7FF</color>
+    <color name="widget_outline">#3B506B</color>
 </resources>

@@ -7,14 +7,14 @@
     android:gravity="center_vertical"
     android:paddingStart="12dp"
     android:paddingEnd="12dp"
-    android:paddingTop="6dp"
-    android:paddingBottom="6dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
     android:background="@drawable/widget_background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
+        android:layout_marginBottom="4dp"
         android:gravity="center_vertical">
         <TextView
             android:id="@+id/widget_city"
@@ -103,11 +103,17 @@
                 android:gravity="end"
                 android:breakStrategy="simple"
                 android:includeFontPadding="false" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="4dp"
+                android:background="@color/widget_outline"
+                android:importantForAccessibility="no" />
             <TextView
                 android:id="@+id/widget_uv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:text="@string/widget_uv_unavailable"
                 android:textColor="@color/widget_ink"
                 android:textSize="12sp"
