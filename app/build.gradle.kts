@@ -20,8 +20,8 @@ android {
         applicationId = "dev.betterweather"
         minSdk = 26
         targetSdk = 36
-        versionCode = 10
-        versionName = "0.1.1-rc.9"
+        versionCode = 11
+        versionName = "0.1.1-rc.10"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {

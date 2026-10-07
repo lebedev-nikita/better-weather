@@ -146,6 +146,8 @@ Custom data panels are flat `Surface` containers: grouping comes from tonal fill
 
 ## Shapes
 
+The launcher icon is an adaptive icon on all supported Android versions (8.0+): a cobalt `#235BCD` background and a separate amber `#FFCD68` sun vector. The sun and rays stay within the central 66dp safe zone of the 108dp canvas; the launcher supplies the outer shape. The same transparent sun layer supplies monochrome artwork for themed icons on Android 13+.
+
 Rounded readings and status/detail containers share the small corner (12dp); measurement groups share the panel corner (16dp). The launcher widget has its own larger corner (24dp). Buttons, the outlined field and the modal sheet retain Material shapes. Controls and metric symbols use Material outlined vectors. Weather conditions use bundled, ready-made Weather Icons illustrations from Makin-Things / amCharts. These retain their original colors and are rendered as transparent lossless WebP assets: 112dp for current conditions, 40dp for hours and days, 40dp in the widget. Day/night artwork follows forecast `isDay`; unknown conditions display «—» instead of a misleading cloud. Source SVGs, conversion and licensing are in [third_party/weather-icons](third_party/weather-icons/README.md).
 
 ## Components
