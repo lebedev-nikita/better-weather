@@ -48,6 +48,12 @@ class WeatherTest {
         assertEquals("Нет данных", uvDescription(null))
     }
 
+    @Test fun `daylight spans sunrise to sunset and is missing without both times`() {
+        val day = forecast.days.first().copy(sunrise = LocalDateTime.parse("2026-10-06T07:12"), sunset = LocalDateTime.parse("2026-10-06T18:34"))
+        assertEquals("11 ч 22 мин", day.daylight.hoursMinutes())
+        assertEquals("—", day.copy(sunset = null).daylight.hoursMinutes())
+    }
+
     @Test fun `weather codes include freezing rain snow thunderstorms and unknown values`() {
         assertEquals(WeatherKind.Rain, weatherKind(67))
         assertEquals(WeatherKind.Snow, weatherKind(86))
