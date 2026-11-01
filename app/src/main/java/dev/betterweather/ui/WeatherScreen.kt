@@ -36,6 +36,7 @@ import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.WaterDrop
 import androidx.compose.material.icons.outlined.WbSunny
+import androidx.compose.material.icons.outlined.WbTwilight
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -74,6 +75,7 @@ import dev.betterweather.data.WeatherForecast
 import dev.betterweather.data.WeatherPlace
 import dev.betterweather.data.decimal
 import dev.betterweather.data.degrees
+import dev.betterweather.data.hoursMinutes
 import dev.betterweather.data.percent
 import dev.betterweather.data.uvDescription
 import dev.betterweather.data.weatherDescription
@@ -224,6 +226,9 @@ private fun CurrentConditions(forecast: WeatherForecast, now: Instant) {
                 Metric(Icons.Outlined.Air, "Ветер", "${current.windSpeed.decimal()} м/с", windDirection(current.windDirection), Modifier.weight(1f))
                 Metric(Icons.Outlined.WbSunny, "UV-индекс", forecast.currentUv(now).decimal(), uvDescription(forecast.currentUv(now)), Modifier.weight(1f))
                 Metric(Icons.Outlined.WaterDrop, "Влажность", current.humidity.percent(), "Относительная", Modifier.weight(1f))
+                Metric(Icons.Outlined.WbTwilight, "Восход и закат",
+                    "${today?.sunrise?.format(hourFormat) ?: "—"} – ${today?.sunset?.format(hourFormat) ?: "—"}",
+                    "Световой день ${today?.daylight.hoursMinutes()}", Modifier.weight(1f))
             }
         }
     }

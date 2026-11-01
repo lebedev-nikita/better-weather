@@ -1,5 +1,6 @@
 package dev.betterweather.data
 
+import java.time.Duration
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -51,7 +52,10 @@ data class DayWeather(
     val uvMax: Double?,
     val sunrise: LocalDateTime?,
     val sunset: LocalDateTime?,
-)
+) {
+    /** Daylight between sunrise and sunset, or null when either time is missing. */
+    val daylight: Duration? get() = if (sunrise != null && sunset != null && !sunset.isBefore(sunrise)) Duration.between(sunrise, sunset) else null
+}
 
 data class WeatherForecast(
     val place: WeatherPlace,
@@ -73,6 +77,7 @@ data class WeatherForecast(
 fun Double?.degrees(): String = this?.let { "${it.roundToInt()}°" } ?: "—"
 fun Double?.decimal(): String = this?.let { String.format(Locale.forLanguageTag("ru"), "%.1f", it) } ?: "—"
 fun Double?.percent(): String = this?.let { "${it.roundToInt()}%" } ?: "—"
+fun Duration?.hoursMinutes(): String = this?.let { "${it.toHours()} ч ${it.toMinutes() % 60} мин" } ?: "—"
 fun windDirection(degrees: Double?): String = degrees?.let {
     listOf("С", "СВ", "В", "ЮВ", "Ю", "ЮЗ", "З", "СЗ")[((it / 45).roundToInt() % 8 + 8) % 8]
 } ?: "—"

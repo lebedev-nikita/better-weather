@@ -132,7 +132,7 @@ The application is a single vertically scrolling surface beneath a Material top 
 
 At available content width **840dp**, current conditions form the left column, and hourly/week forecasts form the right. Column weights are 0.9:1.3 with a 36dp gap. Below that threshold the sections stack. This is a content layout breakpoint, not a navigation breakpoint; the app has one main destination and no bottom navigation.
 
-Hours scroll horizontally with an 8dp gap. Measurement cells use a wrapping `FlowRow` with at most three items per row. Day rows align their dates on the left, condition and precipitation in the middle, and high/low readings on the right.
+Hours scroll horizontally with an 8dp gap. Measurement cells use a wrapping `FlowRow` with at most three items per row; wind, UV and humidity fill the first row, and today's sunrise–sunset with daylight length takes the full second row. Day rows align their dates on the left, condition and precipitation in the middle, and high/low readings on the right.
 
 Search uses a fully expanded Material bottom sheet with IME padding. Results scroll within a maximum 340dp list. A reserved 4dp progress-indicator slot in the screen and search prevents the loading indicator itself from moving adjacent content. Error or status messages can still increase the surrounding area's height.
 
